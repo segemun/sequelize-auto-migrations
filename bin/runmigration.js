@@ -36,9 +36,10 @@ if (options.help)
     process.exit(0);
 }
 
-const Sequelize = require("sequelize");
-const sequelize = require(modelsDir).sequelize;
-const queryInterface = sequelize.getQueryInterface();
+const Sequelize = require("sequelize"),
+      model = require(modelsDir),
+      sequelize = model.default ? model.default.sequelize : model.sequelize,
+      queryInterface = sequelize.getQueryInterface();
 
 // execute all migration from
 let fromRevision = options.rev;
